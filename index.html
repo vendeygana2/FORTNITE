@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recarga de Pavos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://cdn2.unrealengine.com/ch6s2-header-image-2012x1132-e85de33a762f.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        h2 {
+            color: #ED7318;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #ED7318;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #d56314;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .modal img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+        .modal h3 {
+            text-align: center;
+            color: #ED7318;
+        }
+        .resumen-item {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .resumen-concepto {
+            font-weight: bold;
+            color: #ED7318;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .logo-header {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto 15px;
+            display: block;
+        }
+        .privacidad-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            z-index: 1001;
+        }
+        .privacidad-modal p {
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.5;
+        }
+        .privacidad-btn {
+            background-color: #ED7318;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite Logo" class="logo-header">
+
+        <h2>Recarga de Pavos</h2>
+        <form id="recargaForm">
+            <div class="form-group">
+                <label for="cpAmount">SELECCIONA LA RECARGA DE PAVOS:</label>
+                <select id="cpAmount" name="cpAmount" required>
+                    <option value="" selected disabled>-- Seleccione una opción --</option>
+                    <option value="1000 pavos - 616,00 Bs - 6,70 BINANCE">1000 pavos - 616,00 Bs - 6,70 BINANCE</option>
+                    <option value="2000 pavos - 1.217,00 Bs - 13,23 BINANCE">2000 pavos - 1.217,00 Bs - 13,23 BINANCE</option>
+                    <option value="2800 pavos - 1.515,00 Bs - 16,47 BINANCE">2800 pavos - 1.515,00 Bs - 16,47 BINANCE</option>
+                    <option value="5000 pavos - 2.688,00 Bs - 29,22 BINANCE">5000 pavos - 2.688,00 Bs - 29,22 BINANCE</option>
+                    <option value="10000 pavos - 5.294,00 Bs - 57,54 BINANCE">10000 pavos - 5.294,00 Bs - 57,54 BINANCE</option>
+                    <option value="13500 pavos - 5.950,00 Bs - 64,67 BINANCE">13500 pavos - 5.950,00 Bs - 64,67 BINANCE</option>
+                    <option value="Pack de inicio (600 pavos) - 333,00 Bs - 3,62 BINANCE">Pack de inicio (600 pavos) - 333,00 Bs - 3,62 BINANCE</option>
+                    <option value="Club de Fortnite 1 Mes - 535,00 Bs - 5,82 BINANCE">Club de Fortnite 1 Mes - 535,00 Bs - 5,82 BINANCE</option>
+                    <option value="Club de Fortnite 3 Meses - 1.176,00 Bs - 12,78 BINANCE">Club de Fortnite 3 Meses - 1.176,00 Bs - 12,78 BINANCE</option>
+                    <option value="Club de Fortnite 6 Meses - 1.878,00 Bs - 20,41 BINANCE">Club de Fortnite 6 Meses - 1.878,00 Bs - 20,41 BINANCE</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="correo">CORREO DE LA CUENTA A RECARGAR</label>
+                <input type="email" id="correo" name="correo" pattern=".+@.+\..+" title="Por favor, ingrese un correo válido con @." required>
+            </div>
+            
+            <div class="form-group">
+                <label for="idJugador">Contraseña</label>
+                <input type="password" id="idJugador" name="idJugador" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="number" id="telefono" name="telefono" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cedula">Cédula de Identidad</label>
+                <input type="number" id="cedula" name="cedula" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="metodoPago">Método de Pago</label>
+                <select id="metodoPago" name="metodoPago" required>
+                    <option value="" disabled selected>Seleccione un método</option>
+                    <option value="💸 Descuento en VENDE Y GANA">💸 Descuento en VENDE Y GANA</option>
+                    <option value="📲 Pago Móvil Mercantil: Cédula: 13967475 Teléfono: 04120754787">📲 Pago Móvil Mercantil: Cédula: 13967475 Teléfono: 04120754787</option>
+                    <option value="🪙 BINANCE: ID 710917837">🪙 BINANCE: ID 710917837</option>
+                </select>
+            </div>
+            
+            <button type="button" class="btn" onclick="mostrarResumen()">Solicitar Recarga</button>
+        </form>
+    </div>
+
+    <!-- Modal de privacidad (solo se muestra una vez) -->
+    <div class="overlay" id="privacidadOverlay"></div>
+    <div class="privacidad-modal" id="modalPrivacidad">
+        <h3>🔐 IMPORTANTE 🔐</h3>
+        <p>🌟 La Recarga se debe hacer desde la cuenta del Jugador.<br><br>
+           🛡️ En VENDE Y GANA respetamos la privacidad de los datos suministrados.<br><br>
+           ℹ️ Al realizar la recarga te lo indicaremos y te recomendamos si así lo estimas conveniente CAMBIAR LA CONTRASEÑA.<br><br>
+           🙏 Gracias por preferirnos VENDE Y GANA.</p>
+        <button class="privacidad-btn" onclick="cerrarAdvertencia()">Entendido</button>
+    </div>
+
+    <!-- Modal de resumen -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modalResumen">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Logo WhatsApp">
+        <h3>RESUMEN DE SOLICITUD</h3>
+        <div id="resumen"></div>
+        <button class="btn" onclick="enviarMensaje()">Enviar a WhatsApp</button>
+    </div>
+
+    <script>
+        // Variable para controlar si ya se mostró el aviso
+        let avisoMostrado = false;
+
+        document.getElementById('idJugador').addEventListener('focus', function() {
+            if (!avisoMostrado) {
+                document.getElementById('privacidadOverlay').style.display = 'block';
+                document.getElementById('modalPrivacidad').style.display = 'block';
+                avisoMostrado = true;
+            }
+        });
+
+        function cerrarAdvertencia() {
+            document.getElementById('privacidadOverlay').style.display = 'none';
+            document.getElementById('modalPrivacidad').style.display = 'none';
+        }
+
+        function mostrarResumen() {
+            const cpAmount = document.getElementById('cpAmount').value;
+            if(cpAmount === "") {
+                alert("Por favor seleccione una opción de recarga");
+                return;
+            }
+            
+            const correo = document.getElementById('correo').value;
+            const telefono = document.getElementById('telefono').value;
+            const contrasena = document.getElementById('idJugador').value;
+            const cedula = document.getElementById('cedula').value;
+            const metodoPago = document.getElementById('metodoPago').value;
+
+            const resumenHTML = `
+                <div class="resumen-item"><span class="resumen-concepto">Recarga seleccionada:</span> ${cpAmount}</div>
+                <div class="resumen-item"><span class="resumen-concepto">Correo de la cuenta:</span> ${correo}</div>
+                <div class="resumen-item"><span class="resumen-concepto">Contraseña:</span> ${contrasena}</div>
+                <div class="resumen-item"><span class="resumen-concepto">Teléfono:</span> ${telefono}</div>
+                <div class="resumen-item"><span class="resumen-concepto">Cédula:</span> ${cedula}</div>
+                <div class="resumen-item"><span class="resumen-concepto">Método de Pago:</span> ${metodoPago}</div>
+            `;
+            
+            document.getElementById('resumen').innerHTML = resumenHTML;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('modalResumen').style.display = 'block';
+        }
+
+        function enviarMensaje() {
+            const conceptos = document.querySelectorAll('.resumen-concepto');
+            const valores = document.querySelectorAll('.resumen-item');
+            let resumenTexto = "🚀 RESUMEN DE RECARGA DE PAVOS 🚀\n\n";
+            
+            for(let i = 0; i < conceptos.length; i++) {
+                resumenTexto += `${conceptos[i].textContent} ${valores[i].textContent.replace(conceptos[i].textContent, '').trim()}\n`;
+            }
+            
+            const numeroWhatsApp = '+584247388620';
+            const mensaje = encodeURIComponent(resumenTexto);
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
+        }
+    </script>
+</body>
+</html>
