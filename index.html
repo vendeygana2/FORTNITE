@@ -29,6 +29,7 @@
         }
         .form-group {
             margin-bottom: 15px;
+            position: relative;
         }
         label {
             display: block;
@@ -40,6 +41,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         .btn {
             background-color: #ED7318;
@@ -49,6 +51,7 @@
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            font-size: 16px;
         }
         .btn:hover {
             background-color: #d56314;
@@ -128,6 +131,22 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        /* Estilos para el campo de contraseña con ojito */
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+            font-size: 18px;
+        }
+        .toggle-password:hover {
+            color: #333;
+        }
     </style>
 </head>
 <body>
@@ -140,16 +159,16 @@
                 <label for="cpAmount">SELECCIONA LA RECARGA DE PAVOS:</label>
                 <select id="cpAmount" name="cpAmount" required>
                     <option value="" selected disabled>-- Seleccione una opción --</option>
-                    <option value="1000 pavos - 616,00 Bs - 6,70 BINANCE">1000 pavos - 616,00 Bs - 6,70 BINANCE</option>
-                    <option value="2000 pavos - 1.217,00 Bs - 13,23 BINANCE">2000 pavos - 1.217,00 Bs - 13,23 BINANCE</option>
-                    <option value="2800 pavos - 1.515,00 Bs - 16,47 BINANCE">2800 pavos - 1.515,00 Bs - 16,47 BINANCE</option>
-                    <option value="5000 pavos - 2.688,00 Bs - 29,22 BINANCE">5000 pavos - 2.688,00 Bs - 29,22 BINANCE</option>
-                    <option value="10000 pavos - 5.294,00 Bs - 57,54 BINANCE">10000 pavos - 5.294,00 Bs - 57,54 BINANCE</option>
-                    <option value="13500 pavos - 5.950,00 Bs - 64,67 BINANCE">13500 pavos - 5.950,00 Bs - 64,67 BINANCE</option>
-                    <option value="Pack de inicio (600 pavos) - 333,00 Bs - 3,62 BINANCE">Pack de inicio (600 pavos) - 333,00 Bs - 3,62 BINANCE</option>
-                    <option value="Club de Fortnite 1 Mes - 535,00 Bs - 5,82 BINANCE">Club de Fortnite 1 Mes - 535,00 Bs - 5,82 BINANCE</option>
-                    <option value="Club de Fortnite 3 Meses - 1.176,00 Bs - 12,78 BINANCE">Club de Fortnite 3 Meses - 1.176,00 Bs - 12,78 BINANCE</option>
-                    <option value="Club de Fortnite 6 Meses - 1.878,00 Bs - 20,41 BINANCE">Club de Fortnite 6 Meses - 1.878,00 Bs - 20,41 BINANCE</option>
+                    <option value="1000 Pavos = Bs 648 🟢">1000 Pavos = Bs 648 🟢</option>
+                    <option value="2000 Pavos = Bs 1,296 🟡">2000 Pavos = Bs 1,296 🟡</option>
+                    <option value="2800 Pavos = Bs 1,620 🔵">2800 Pavos = Bs 1,620 🔵</option>
+                    <option value="5000 Pavos = Bs 2,916 🟣">5000 Pavos = Bs 2,916 🟣</option>
+                    <option value="10000 Pavos = Bs 5,832 🟠">10000 Pavos = Bs 5,832 🟠</option>
+                    <option value="13500 Pavos = Bs 6,480 🔴">13500 Pavos = Bs 6,480 🔴</option>
+                    <option value="Pack de inicio (600 Pavos) = Bs 324 ⚡">Pack de inicio (600 Pavos) = Bs 324 ⚡</option>
+                    <option value="Club de Fortnite 1 Mes = Bs 540 🏆">Club de Fortnite 1 Mes = Bs 540 🏆</option>
+                    <option value="Club de Fortnite 3 Meses = Bs 1,188 🥉">Club de Fortnite 3 Meses = Bs 1,188 🥉</option>
+                    <option value="Club de Fortnite 6 Meses = Bs 1,944 💎">Club de Fortnite 6 Meses = Bs 1,944 💎</option>
                 </select>
             </div>
             
@@ -160,7 +179,10 @@
             
             <div class="form-group">
                 <label for="idJugador">Contraseña</label>
-                <input type="password" id="idJugador" name="idJugador" required>
+                <div class="password-container">
+                    <input type="password" id="idJugador" name="idJugador" required>
+                    <span class="toggle-password" id="togglePassword">👁️</span>
+                </div>
             </div>
             
             <div class="form-group">
@@ -210,6 +232,20 @@
     <script>
         // Variable para controlar si ya se mostró el aviso
         let avisoMostrado = false;
+
+        // Función para mostrar/ocultar contraseña
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('idJugador');
+            const toggleIcon = this;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '👁️‍🗨️';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        });
 
         document.getElementById('idJugador').addEventListener('focus', function() {
             if (!avisoMostrado) {
